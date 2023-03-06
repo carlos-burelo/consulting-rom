@@ -1,0 +1,94 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --backgroundColor: #070710;
+  --primaryColor: #0051ff;
+  --textColor: #3a3a3c;
+  --titleColor: #ffffff;
+
+  // input
+  --inputColor: #ffffff;
+  --backgroundInput: #ffffff08;
+  --borderColorInputHover: #0051ff;
+
+  // button
+  --buttonColor: #ffffff;
+  --backgroundButton: #0051ff;
+  --borderColorButtonHover: #0f3587;
+
+  // card
+  --backgroundCard: #ffffff08;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color-scheme: dark;
+}
+
+body {
+  background: var(--backgroundColor);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: none;
+}
+
+p {
+  color: var(--textColor);
+}
+
+li,
+ul,
+ol {
+  list-style: none;
+}
+
+
+img {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: .5em;
+}
+
+button {
+  cursor: pointer;
+  padding: .75em 1.5em;
+  border: 0;
+  outline: 0;
+  border-radius: .5em;
+  background: var(--backgroundButton);
+  font-weight: 600;
+  font-size: 1.1em;
+  color: var(--titleColor);
+  transition: box-shadow, background .3s ease;
+
+  &:hover {
+    background: var(--borderColorButtonHover);
+  }
+}
+
+input,
+textarea {
+  border: 0;
+  outline: 0;
+  padding: .75em 1.5em;
+  border-radius: .5em;
+  font-size: 1.1em;
+  background-color: var(--backgroundInput);
+  transition: box-shadow .4s ease;
+  height: 50px;
+
+  &:hover {
+    // ring effect
+    box-shadow: 0 0 0 2px var(--borderColorInputHover);
+  }
+}

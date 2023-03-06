@@ -1,0 +1,41 @@
+.avatar {
+  aspect-ratio: 1/1;
+  width: 110px;
+  height: 130px;
+  position: relative;
+  border-radius: 1em;
+  overflow: hidden;
+  cursor: pointer;
+  transition: box-shadow .4s ease;
+  background-color: var(--backgroundInput);
+
+
+  input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+  }
+
+  span {
+    content: '🧑‍⚕️';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5em;
+    z-index: -1;
+  }
+}
+
+.avatar:hover {
+  box-shadow: 0 0 0 2px var(--borderColorInputHover);
+}
+
+.avatarPreview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
