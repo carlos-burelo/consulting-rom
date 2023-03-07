@@ -14,6 +14,7 @@ export declare global {
   type Page = NextPage<PageProps>
 
   export type TimeFormat = `${number}${'d' | 'h' | 'm'}`
-
+  export type DayFormat = `${number}d`
+  export type HourFormat = `${number}h`
   export type RelativeTimeFormat = `${number}${'am' | 'pm'}`
 }

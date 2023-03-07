@@ -1,34 +1,49 @@
-import { getCurrentWeek } from '#/lib/time'
-import Appointment from '../Appointment'
+import { getCurrentWeek, parseRelativeTime, parseTime } from '#/lib/time'
+import { generateSchedule } from '../../services/date'
 import AppointmentList from '../AppointmentList'
 import _ from './WeekMap.module.scss'
 
-const WeekMap: FC = () => {
-  const days = getCurrentWeek()
-  const hoursRaw = [
-    '8:00',
-    '8:30',
-    '9:00',
-    '9:30',
-    '10:00',
-    '10:30',
-    '11:00',
-  ]
+interface ConfigI {
+  showDays: DayFormat
+  activeHours: HourFormat
+  startTime: RelativeTimeFormat
+}
 
+const CONFIG: ConfigI = {
+  showDays: '7d',
+  activeHours: '8h',
+  startTime: '7am'
+}
+
+
+const WeekMap: FC = () => {
+  const { unit: startHour } = parseRelativeTime(CONFIG.startTime)
+  const { unit: maxHours } = parseTime(CONFIG.activeHours)
+  const endHour = startHour + maxHours
+  const hours = generateSchedule(new Date(), startHour, endHour)
+  const days = getCurrentWeek(CONFIG.showDays)
   return (
     <div className={_.week}>
       <div className={_.hours}>
         <div className={_.head}>
           Hora
         </div>
-        {hoursRaw.map((day, index) => (
+        {hours.map((hour, index) => (
           <div key={index} className={_.hour}>
-            {day}
+            {new Intl.DateTimeFormat('en-ES', {
+              hour: 'numeric',
+              minute: 'numeric'
+            }).format(hour)}
           </div>
         ))}
       </div>
       {days.map((day, index) => (
-        <AppointmentList key={index} hours={hoursRaw} day={day} />
+        <AppointmentList
+          key={index}
+          day={day}
+          endHour={endHour}
+          startHour={startHour}
+        />
       ))}
     </div>
   )

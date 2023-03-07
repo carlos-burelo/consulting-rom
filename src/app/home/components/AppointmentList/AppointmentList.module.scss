@@ -1,8 +1,11 @@
 .list {
   display: grid;
   background-color: var(--backgroundCard);
+  gap: .5em;
 }
 
 .day {
   padding: 1em 1.25em;
+  text-transform: capitalize;
+  font-weight: bold;
 }

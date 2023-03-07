@@ -1,12 +1,18 @@
 .week {
   display: flex;
+  margin-inline: auto;
+  gap: .5em;
 }
 
 .head {
   padding: 1em 1.25em;
+  font-weight: bold;
 }
 
 .hours {
+  display: grid;
+  gap: .5em;
+
   .hour {
     padding: 1.25rem;
   }

@@ -29,12 +29,13 @@ export function parseRelativeTime (time: RelativeTimeFormat): TimeFomatParams {
   }
 }
 
-export function getCurrentWeek (): Date[] {
+export function getCurrentWeek (numberOfDays: DayFormat): Date[] {
   // return current week dates [monday, tuesday, wednesday, thursday, friday, saturday, sunday]
 
   const today = new Date().getDay()
-
-  const days = [0, 1, 2, 3, 4, 5, 6].map((day) => {
+  const { unit: rawDays } = parseTime(numberOfDays)
+  const arr = Array.from({ length: rawDays }, (_, i) => i)
+  const days = arr.map((day) => {
     const date = new Date()
     date.setDate(date.getDate() - today + day)
     return date

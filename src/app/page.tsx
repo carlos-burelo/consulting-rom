@@ -1,8 +1,12 @@
 import WeekMap from '#/app/home/components/WeekMap'
+import _ from './home/home.module.scss'
+
 
 const HomePage: Page = () => {
   return (
-    <WeekMap />
+    <div className={_.container}>
+      <WeekMap />
+    </div>
   )
 }
 
