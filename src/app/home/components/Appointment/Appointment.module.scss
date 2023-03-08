@@ -14,14 +14,23 @@
   }
 }
 
-.active {
+.reserved {
   background-color: var(--backgroundCardActive);
 
   &:hover {
-    background-color: var(--backgroundCardHover);
+    background-color: var(--backgroundCardActiveHover);
   }
 }
 
 .now {
   background-color: var(--backgroundCardChecked);
+
+  &:hover {
+    background-color: var(--backgroundCardChecked);
+  }
+}
+
+.hasPassed {
+  opacity: .5;
+  pointer-events: none;
 }

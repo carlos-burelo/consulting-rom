@@ -17,3 +17,15 @@ export function generateSchedule (day: Date, startHour: number, endHour: number)
   return DATES
 
 }
+
+
+export function getExactHour () {
+  const date = new Date()
+  return new Date(
+    date.getFullYear(),
+    date.getMonth(),
+    date.getDate(),
+    date.getHours(),
+    0).toString()
+
+}

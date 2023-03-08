@@ -1,33 +1,52 @@
 'use client'
 import { cx } from '#/lib/utils'
-import _ from './Appointment.module.scss'
 import { useState } from 'react'
+import { useCiteStore } from '../../context'
+import { getExactHour } from '../../services/date'
+import _ from './Appointment.module.scss'
 
 interface Props {
   hour: string
   reserved: boolean
 }
 
-
+type Status = 'reserved' | 'available' | 'in_progress' | 'finished'
 const Appointment: FC<Props> = ({ hour, reserved }) => {
-  const active = reserved && _.active
-  const now =
-    // redondea a la hora exacta (sin minutos)
-    new Date(
-      new Date().getFullYear(),
-      new Date().getMonth(),
-      new Date().getDate(),
-      new Date().getHours(),
-      0,
-    ).toString()
-  const inProgress = hour === now ? _.now : ''
+  const store = useCiteStore()
+
+  const inProgress = hour === getExactHour()
+  const finished = new Date(hour) < new Date()
+  const [status, setStatus] = useState<Status>(
+    inProgress ? 'in_progress' :
+      reserved && !finished ? 'reserved' :
+        finished ? 'finished' : 'available'
+  )
+
+  const reserve = () => {
+    if (!finished && !reserved) {
+      store.addCite({
+        date: new Date(hour),
+        description: 'Some description',
+        patient: 'Some patient'
+      })
+      setStatus('reserved')
+    }
+  }
 
   return (
-    <div className={cx(_.appointment, active, inProgress)}>
-      {inProgress ? 'En curso' :
-        reserved ? 'Reservado' : '+'
-      }
-    </div>
+    <>
+      <div
+        onClick={reserve}
+        className={cx(
+          _.appointment,
+          status === 'reserved' && _.reserved,
+          status == 'in_progress' && _.now,
+          status == 'finished' && _.finished
+        )}
+      >
+        {status}
+      </div>
+    </>
   )
 }
 

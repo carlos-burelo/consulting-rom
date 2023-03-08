@@ -1,11 +1,15 @@
-import WeekMap from '#/app/home/components/WeekMap'
+import Calendar from './home/components/Calendar'
+import Header from './home/components/Header'
 import _ from './home/home.module.scss'
 
 
 const HomePage: Page = () => {
   return (
     <div className={_.container}>
-      <WeekMap />
+      <Header />
+      <div className={_.calendar}>
+        <Calendar />
+      </div>
     </div>
   )
 }

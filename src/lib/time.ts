@@ -30,14 +30,13 @@ export function parseRelativeTime (time: RelativeTimeFormat): TimeFomatParams {
 }
 
 export function getCurrentWeek (numberOfDays: DayFormat): Date[] {
-  // return current week dates [monday, tuesday, wednesday, thursday, friday, saturday, sunday]
-
-  const today = new Date().getDay()
+  // retorna un array de fechas de los ultimos n dias a partir del dia actual
+  // ejemplo: hoy es 07-03-2023, numberOfDays = 3d --> [07-03-2023, 08-03-2023, 09-03-2023]
   const { unit: rawDays } = parseTime(numberOfDays)
-  const arr = Array.from({ length: rawDays }, (_, i) => i)
-  const days = arr.map((day) => {
+  const array = Array.from({ length: rawDays }, (_, i) => i)
+  const days = array.map((day, index) => {
     const date = new Date()
-    date.setDate(date.getDate() - today + day)
+    date.setDate(date.getDate() + index)
     return date
   })
 

@@ -22,10 +22,17 @@
 
   // card
   --backgroundCard: #ffffff08;
+  --backdropCard: #070710eb;
   --backgroundCardActive: #0051ff;
   --backgroundCardHover: #ffffff08;
   --backgroundCardActiveHover: #0f3587;
   --backgroundCardChecked: #11d057;
+
+
+  // others
+
+  --headerHeight: 80px;
+  --contentHeight: calc(100vh - var(--headerHeight));
 }
 
 html {
